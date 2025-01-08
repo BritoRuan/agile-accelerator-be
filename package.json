@@ -1,0 +1,35 @@
+{
+  "name": "agile-accelerator-be",
+  "version": "1.0.0",
+  "description": "Uma aplicação para gerenciar um inventário de produtos. Permite adicionar, listar, atualizar, excluir e buscar produtos. As interações são realizadas via terminal, e os dados podem ser persistidos em um arquivo JSON.",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "lint": "eslint src --ext .ts --fix",
+    "build": "tsup src --out-dir build"
+  },
+  "keywords": [
+    "API",
+    "PUCRS",
+    "Aceleradora Ágil",
+    "DESAFIO"
+  ],
+  "author": "Ruan Brito <ruan.desenvolvedor@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@prisma/client": "6.1.0",
+    "@rocketseat/eslint-config": "^2.2.2",
+    "@types/node": "^22.10.5",
+    "eslint": "^8.57.1",
+    "prisma": "6.1.0",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "fastify": "^5.2.1",
+    "zod": "3.24.1"
+  }
+}
