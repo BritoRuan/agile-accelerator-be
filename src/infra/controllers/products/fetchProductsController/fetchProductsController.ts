@@ -8,14 +8,14 @@ export async function fetchProduct(
 ) {
   const fetchProductParamsSchema = z.object({
     id: z.string().uuid().optional(),
-    nome: z.string().optional(),
+    name: z.string().optional(),
   })
 
-  const { id, nome } = fetchProductParamsSchema.parse(request.params)
+  const { id, name } = fetchProductParamsSchema.parse(request.params)
 
   const fetchProductUseCase = makeFetchProductsUseCase()
 
-  const { product } = await fetchProductUseCase.execute({ id, nome })
+  const { product } = await fetchProductUseCase.execute({ id, name })
 
   return reply.status(200).send({
     product,
