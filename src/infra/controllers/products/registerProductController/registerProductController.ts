@@ -4,22 +4,22 @@ import { z } from 'zod'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerProductBodySchema = z.object({
-    nome: z.string().min(1),
-    categoria: z.string(),
-    qtdEstoque: z.number().int(),
-    preco: z.number(),
+    name: z.string().min(1),
+    category: z.string(),
+    stockQuantity: z.number().int(),
+    price: z.number(),
   })
 
-  const { nome, categoria, qtdEstoque, preco } =
+  const { name, category, stockQuantity, price } =
     registerProductBodySchema.parse(request.body)
 
   const registerProductUseCase = makeRegisterProductUseCase()
 
   await registerProductUseCase.execute({
-    nome,
-    categoria,
-    qtdEstoque,
-    preco,
+    name,
+    category,
+    stockQuantity,
+    price,
   })
 
   return reply.status(201).send()

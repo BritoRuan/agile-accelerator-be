@@ -11,10 +11,10 @@ export async function updateProduct(
   })
 
   const updateProductBodySchema = z.object({
-    nome: z.string().min(1).optional(),
-    categoria: z.string().optional(),
-    qtdEstoque: z.number().int().optional(),
-    preco: z.number().optional(),
+    name: z.string().min(1).optional(),
+    category: z.string().optional(),
+    stockQuantity: z.number().int().optional(),
+    price: z.number().optional(),
   })
 
   const { id } = updateProductParamsSchema.parse(request.params)
