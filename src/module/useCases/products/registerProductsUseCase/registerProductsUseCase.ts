@@ -2,10 +2,10 @@ import { ProductsRepository } from '@/module/repositories/contracts/ProductsRepo
 import { Product } from '@prisma/client'
 
 interface IRegisterProductUseCaseRequest {
-  nome: string
-  categoria: string
-  qtdEstoque: number
-  preco: number
+  name: string
+  category: string
+  stockQuantity: number
+  price: number
 }
 
 interface IRegisterProductUseCaseResponse {
@@ -16,16 +16,16 @@ export class RegisterProductUseCase {
   constructor(private productsRepository: ProductsRepository) {}
 
   async execute({
-    nome,
-    categoria,
-    qtdEstoque,
-    preco,
+    name,
+    category,
+    stockQuantity,
+    price,
   }: IRegisterProductUseCaseRequest): Promise<IRegisterProductUseCaseResponse> {
     const product = await this.productsRepository.create({
-      nome,
-      categoria,
-      qtdEstoque,
-      preco,
+      name,
+      category,
+      stockQuantity,
+      price,
     })
 
     return { product }

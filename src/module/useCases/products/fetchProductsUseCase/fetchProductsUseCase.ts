@@ -3,7 +3,7 @@ import { Product } from '@prisma/client'
 
 interface IFetchProductUseCaseRequest {
   id?: string
-  nome?: string
+  name?: string
 }
 
 interface IFetchProductUseCaseResponse {
@@ -15,23 +15,23 @@ export class FetchProductUseCase {
 
   async execute({
     id,
-    nome,
+    name,
   }: IFetchProductUseCaseRequest): Promise<IFetchProductUseCaseResponse> {
-    if (!id && !nome) {
+    if (!id && !name) {
       throw new Error(
-        'Forneça um ID ou um nome para realizar a busca do produto',
+        'Forneça um ID ou um name para realizar a busca do produto',
       )
     }
 
     const product = id
       ? await this.productsRepository.findProductById(id)
-      : await this.productsRepository.findProductByName(nome as string)
+      : await this.productsRepository.findProductByName(name as string)
 
     if (!product || (Array.isArray(product) && product.length === 0)) {
       throw new Error(
         id
           ? 'Nenhum produto encontrado com ID fornecido'
-          : 'Nenhum produto encontrado com o nome fornecido',
+          : 'Nenhum produto encontrado com o name fornecido',
       )
     }
 

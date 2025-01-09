@@ -3,10 +3,10 @@ import { Product } from '@prisma/client'
 
 interface IUpdateProductUseCaseRequest {
   id: string
-  nome?: string
-  categoria?: string
-  qtdEstoque?: number
-  preco?: number
+  name?: string
+  category?: string
+  stockQuantity?: number
+  price?: number
 }
 
 interface IUpdateProductUseCaseResponse {
@@ -18,10 +18,10 @@ export class UpdateProductUseCase {
 
   async execute({
     id,
-    nome,
-    categoria,
-    qtdEstoque,
-    preco,
+    name,
+    category,
+    stockQuantity,
+    price,
   }: IUpdateProductUseCaseRequest): Promise<IUpdateProductUseCaseResponse> {
     const findProduct = await this.productsRepository.findProductById(id)
 
@@ -30,10 +30,10 @@ export class UpdateProductUseCase {
     }
 
     const updatedProduct = await this.productsRepository.update(id, {
-      nome: nome ?? findProduct.nome,
-      categoria: categoria ?? findProduct.categoria,
-      qtdEstoque: qtdEstoque ?? findProduct.qtdEstoque,
-      preco: preco ?? findProduct.preco,
+      name: name ?? findProduct.name,
+      category: category ?? findProduct.category,
+      stockQuantity: stockQuantity ?? findProduct.stockQuantity,
+      price: price ?? findProduct.price,
     })
 
     return { product: updatedProduct }
