@@ -23,11 +23,11 @@ export class ProductsPrismaRepository implements ProductsRepository {
     })
   }
 
-  async findProductByName(nome: string): Promise<Product[]> {
+  async findProductByName(name: string): Promise<Product[]> {
     return await prisma.product.findMany({
       where: {
-        nome: {
-          contains: nome,
+        name: {
+          contains: name,
           mode: 'insensitive',
         },
       },
